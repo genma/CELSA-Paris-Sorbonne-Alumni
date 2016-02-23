@@ -1,0 +1,362 @@
+\documentclass{beamer}
+\mode<presentation> {
+\usepackage{color}
+\definecolor{bottomcolour}{rgb}{0.21,0.11,0.21}
+\definecolor{middlecolour}{rgb}{0.21,0.11,0.21}
+\setbeamercolor{structure}{fg=white}
+\setbeamertemplate{frametitle}[default]%[center]
+\setbeamercolor{normal text}{bg=black, fg=white}
+\setbeamertemplate{background canvas}[vertical shading]
+[bottom=bottomcolour, middle=middlecolour, top=black]
+\setbeamertemplate{items}[circle]
+\setbeamertemplate{navigation symbols}{} %no nav symbols
+\setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg!50!red!50!blue!100!green}
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!5!white!10!bg,fg=white}
+\setbeamertemplate{navigation symbols}{}
+}
+\usepackage{graphicx} 
+\usepackage{booktabs} 
+\usepackage[utf8]{inputenc}  
+\usepackage[T1]{fontenc}  
+\usepackage{geometry}     
+%\usepackage[francais]{babel} 
+\usepackage{eurosym}
+\usepackage{verbatim}
+\usepackage{ragged2e}
+\justifying
+
+\input{cc_beamer}
+
+\title[Journalisme et Chiffrement]{Journalisme et Chiffrement
+\\~\\
+\includegraphics[scale=0.4]{./images/CELSA.jpg}
+} 
+\date{Paris - 27 février 2016}
+\author{Genma}
+
+\begin{document}
+
+%% Titlepage
+\begin{frame}
+	\titlepage
+	\vfill
+	\begin{center}
+		\CcGroupByNcSa{0.83}{0.95ex}\\[2.5ex]
+		{\tiny\CcNote{\CcLongnameByNcSa}}
+		\vspace*{-2.5ex}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{\includegraphics[scale=0.4]{./images/Genma.jpg} \ \ \  A propos de moi  }
+\begin{columns}[c] 
+\column{.55\textwidth} 
+\textbf{Où me trouver sur Internet?}
+\begin{itemize}
+\item Le Blog de Genma : http://genma.free.fr
+\item Twitter : http://twitter.com/genma
+\end{itemize}
+\column{.5\textwidth} 
+\includegraphics[scale=0.40] {./images/blog.png} 
+\end{columns}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Programme}
+
+\justifying{
+Pourquoi ne dit-on pas crypter ? Un peu de théorie
+\begin{itemize}
+\item Le principe du chiffrement
+\item Le chiffrement symétrique (Cesar)
+\item Le chiffrement asymétrique (les enveloppes) (Mails et GPG)
+\end{itemize}
+}
+
+\justifying{
+Cacher des documents sur son ordi, le coffre-fort numérique
+\begin{itemize}
+\item Le coffre-fort numérique avec TrueCrypt/Veracrypt
+\end{itemize}
+}
+
+Pause
+\justifying{
+Naviguer sur le web sans être vu, Tor
+\begin{itemize}
+\item Comment l’installer, comment ça marche…
+\end{itemize}
+}
+
+\end{frame}
+%-----------------------------------------------
+
+%-----------------------------------------------
+\begin{frame}
+\begin{center}
+\Huge{Pourquoi ne dit-on pas crypter ? Un peu de théorie}
+\end{center}
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Le principe du chiffrement}
+
+
+\begin{block}{Le chiffrement}
+\justifying{
+Le chiffrement consiste à chiffrer un document/un fichier à l’aide d’une clef de chiffrement. 
+L’opération inverse étant le déchiffrement. 
+}
+\end{block}
+\begin{block}{Le cryptage}
+\justifying{
+Le terme \emph{cryptage} est un anglicisme, tiré de l’anglais encryption. 
+Le décryptage existe : il s’agit de "casser" un document chiffré lorsqu’on n’en a pas la clef.
+}
+\end{block}
+\begin{block}{La cryptographie}
+\justifying{
+La science quant-à elle s’appelle  la "cryptographie".
+}
+\end{block}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Le chiffrement symétrique (Cesar)}
+
+
+\begin{block}{Le chiffrement symétrique}
+\justifying{
+Cela consiste à chiffrer un message avec la même clef que celle qui sera utilisé pour le déchiffrement. 
+Exemple : le code de César avec un décalage de lettres. A-C, B-D etc.
+\\
+Nous venons en paix -  Pqwu xgpqpu gp rckz
+\\
+On applique le processus inverse pour avoir le message.
+}
+\end{block}
+
+\begin{block}{Une clef de chiffrement c'est quoi?}
+\justifying{
+
+Une clef s'appelle une clef car elle ouvre/ferme le cadenas qu'est l'algorithme de chiffrement utilisé.
+\begin{itemize}
+\item Ici, l'algorithme est dans la notion de décalage.
+\item La clef est le nombre de lettre décallées (ici deux lettres).
+\end{itemize}
+}
+\end{block}
+
+\end{frame}
+%------------------------------------------------
+\begin{frame}
+\frametitle{Le chiffrement asymétrique 1/2}
+
+\begin{block}{Clef publique - clef privée}
+\justifying{
+
+Le chiffrement asymétrique repose sur le couple clef publique - clef privée.
+\\$\Rightarrow$  Ce qu'il faut comprendre/retenir : 
+\begin{itemize}
+\item Ma clef privée est secrète.
+\item Ma clef publique est distribuée à tous.
+\end{itemize}
+}
+\end{block}
+
+\begin{block}{L'algorithme de chiffrement}
+\justifying{
+L'algorithme de chiffrement est bien plus complexe que le fait de décaler des lettres ; il repose sur des notions mathématiques (nombre premiers...)
+}
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Le chiffrement asymétrique 2/2}
+
+\begin{block}{Le chiffrement}
+Avec la clef publique de mon correspondant, je chiffre  un fichier.
+\\$\Rightarrow$ Le fichier ne peut plus être déchiffré que par la personne qui possède la clef privée correspondant à la clef publique que j'ai utilisée (donc mon correspondant).
+\end{block}
+
+\begin{block}{Le déchiffrement}
+Avec sa clef privée,  mon correspondant déchiffre le fichier.
+\\
+$\Rightarrow$ Il peut alors lire le message.
+\end{block}
+
+\begin{block}{Cas concret}
+Le chiffrement de ses mails avec PGP.
+\end{block}
+\end{frame}
+
+%-----------------------------------------------
+
+%-----------------------------------------------
+\begin{frame}
+\begin{center}
+\Huge{Le chiffrement en pratique}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{ Le coffre-fort numérique avec TrueCrypt/Veracrypt}
+
+\begin{center}
+\includegraphics[scale=0.4] {./images/Truecrypt18.png}
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Les enveloppes}
+
+\begin{center}
+\includegraphics[scale=0.4] {./images/gpg.jpg}
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Les boîtes 1/2}
+
+\begin{columns}[c] 
+\column{.55\textwidth} 
+\includegraphics[scale=0.28] {./images/GPGBox_02.png}
+\column{.5\textwidth} 
+\includegraphics[scale=0.28] {./images/GPGBox_03.png}
+\end{columns}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Les boîtes 2/2}
+
+\includegraphics[scale=0.65] {./images/GPGBox_01.jpg}
+\end{frame}
+
+
+%-----------------------------------------------
+\begin{frame}
+\begin{center}
+\Huge{Aller plus loin? Tor et le TorBrowser}
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\begin{center}
+\Huge{Quelques mots sur Tor ? }
+\\~\\ \includegraphics[scale=0.4]{./images/logo_tor.jpg}
+\end{center}
+\huge{Attention : la présentation \emph{complète} dure une bonne heure et demie...}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Comment fonctionne Tor ?}
+\begin{center}
+\includegraphics[keepaspectratio,width=\textwidth, height=.8\textheight]{images/tor-keys1}
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Tor et les enveloppes}
+
+\begin{center}
+\includegraphics[scale=0.3] {./images/tor.jpg}
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{A quoi sert TOR?}
+
+\begin{block}{Ce que l'usage de Tor permet de faire}
+\justifying{
+\begin{itemize}
+\justifying{
+\item  d'échapper au fichage publicitaire,
+\item  de publier des informations sous un pseudonyme,
+\item  d'accéder à des informations en laissant moins de traces,
+\item  de déjouer des dispositifs de filtrage (sur le réseau de son entreprise, de son Université, en Chine ou en France…),
+\item  de communiquer en déjouant des dispositifs de surveillance,
+\item  de tester son pare-feu,
+\item  … et sûrement encore d'autres choses.
+}
+\end{itemize}
+$\Rightarrow$ Tor dispose également d'un système de "services cachés" qui permet de fournir un service en cachant l'emplacement du serveur.
+}
+\end{block}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Télécharger le Tor Browser}
+\justifying{
+Toutes les versions (dans différentes langues, différents OS) sont disponibles sur le site du projet : 
+\\ \url{https://www.torproject.org/}
+\\ Rq : Il existe la possibilité de le recevoir par mail...
+}
+\begin{center}
+\includegraphics[scale=0.5]{./images/tor2.jpg}
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{Lancer le Tor Browser}
+\begin{center}
+\includegraphics[scale=0.3]{./images/tor_browser03.jpg}
+\end{center}
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Utiliser Tor - Tails}
+\justifying{
+Tails (The Amnesic Incognito Live System) est un système d'exploitation complet basé sur Linux et Debian, en live.
+}
+\begin{center}
+\includegraphics[scale=0.3]{./images/tails.jpg}
+\\~\\
+\url{https://tails.boom.org}
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\begin{center}
+\includegraphics[scale=0.4] {./images/LogoCafeViePrivee.jpg}
+\end{center}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\Huge{\centerline{Merci de votre attention.}}
+\Huge{\centerline{Place aux questions.}}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+\frametitle{\includegraphics[scale=0.4]{./images/Genma.jpg} \ \ \  Me contacter?}
+\Huge{\centerline{Le Blog de Genma}}
+\Huge{\centerline{http://genma.free.fr}}
+\Huge{\centerline{~}}
+\Huge{\centerline{Twitter : @genma}}
+\end{frame}
+
+%============================================================================================
+\begin{frame}
+\Huge{\centerline{ANNEXES}}
+\end{frame}
+
+\end{document}
